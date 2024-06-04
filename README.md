@@ -32,3 +32,6 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 
 ### Custom Theme switcher
 * check switch_theme override + theme js  
+
+### Custom Listview Action button
+*  check employee_list js
