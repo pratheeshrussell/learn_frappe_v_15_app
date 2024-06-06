@@ -35,3 +35,9 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 
 ### Custom Listview Action button
 *  check employee_list js
+
+### Customizing Time picker control
+* Frappe uses old version of [Air Datepicker](https://github.com/frappe/air-datepicker)   
+* we can fork, modify, build and add it to our app   
+* check air-datepicker folder  
+* [Example modified code](https://github.com/pratheeshrussell-qb/air-datepicker)  

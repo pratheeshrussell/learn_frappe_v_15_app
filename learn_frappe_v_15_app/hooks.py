@@ -10,10 +10,16 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-app_include_css = "/assets/learn_frappe_v_15_app/css/theme.css"
+
+app_include_css = [
+    "/assets/learn_frappe_v_15_app/css/theme.css",
+    '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.min.css'
+    ]
 app_include_js = [
     "/assets/learn_frappe_v_15_app/js/global.js",
-    "/assets/learn_frappe_v_15_app/js/theme.js"
+    "/assets/learn_frappe_v_15_app/js/theme.js",
+    '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.min.js',
+    '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.en.js'
     ]
 
 # include js, css files in header of web template
