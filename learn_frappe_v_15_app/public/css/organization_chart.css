@@ -1,0 +1,36 @@
+/* Move this later to another file */
+.hierarchy-desktop {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 10px;
+	padding-left: 0px;
+}
+
+.hierarchy-desktop li {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.desktop-node {
+	margin-left: 0;
+}
+
+.desktop-node.active-path {
+	width: 12.25rem;
+}
+
+.active-child {
+	width: 15.5rem;
+}
+
+.desktop-node .node-connections {
+	max-width: 80px;
+}
+
+.hierarchy-desktop .node-children {
+	margin-top: 16px;
+    display: flex;
+}

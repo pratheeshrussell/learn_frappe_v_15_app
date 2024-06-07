@@ -13,6 +13,7 @@ app_license = "mit"
 
 app_include_css = [
     "/assets/learn_frappe_v_15_app/css/theme.css",
+    "/assets/learn_frappe_v_15_app/css/organization_chart.css",
     '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.min.css'
     ]
 app_include_js = [
@@ -35,8 +36,9 @@ app_include_js = [
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
-page_js = {"organizational-chart" : "public/js/organizational_chart.js"}
-
+page_js = {"organizational-chart" : [
+    "public/js/org_chart/organizational_chart.js"]
+    }
 # include js in doctype views
 doctype_js = {"Employee" : "public/js/employee.js"}
 doctype_list_js = {"Employee" : "public/js/employee_list.js"}

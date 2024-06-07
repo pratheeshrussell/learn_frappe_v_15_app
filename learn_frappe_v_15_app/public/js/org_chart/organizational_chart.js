@@ -1,0 +1,35 @@
+console.log("injecting custom organizational-chart...");
+
+var dynamicExtenderFunc = undefined;
+frappe.require("/assets/learn_frappe_v_15_app/js/org_chart/hierarchy_chart_desktop.js", () => {
+	// function should be called only after hierarchy-chart.bundle.js is initialized
+    dynamicExtenderFunc = dynamicExtender;
+});
+
+frappe.pages["organizational-chart"].on_page_load = function (wrapper) {
+	frappe.ui.make_app_page({
+		parent: wrapper,
+		title: __("Organizational Chart"),
+		single_column: true,
+	});
+
+	$(wrapper).bind("show", () => {
+		frappe.require("hierarchy-chart.bundle.js", () => {
+			let organizational_chart;
+			let method = "hrms.hr.page.organizational_chart.organizational_chart.get_children";
+
+			// Inject our customized class
+			let customHeirarchyClass = dynamicExtenderFunc(hrms.HierarchyChart);
+			hrms.HierarchyChart = customHeirarchyClass;
+
+			if (frappe.is_mobile()) {
+				organizational_chart = new hrms.HierarchyChartMobile("Employee", wrapper, method);
+			} else {
+				organizational_chart = new hrms.HierarchyChart("Employee", wrapper, method);
+			}
+
+			frappe.breadcrumbs.add("HR");
+			organizational_chart.show();
+		});
+	});
+};
