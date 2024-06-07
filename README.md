@@ -41,3 +41,6 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 * we can fork, modify, build and add it to our app   
 * check air-datepicker folder  
 * [Example modified code](https://github.com/pratheeshrussell-qb/air-datepicker)  
+
+### Injecting code in Page
+* check organizational_chart.js. It makes the app assume we are in mobile view always so renders the chart vertically in the **organizational-chart** page     

@@ -35,6 +35,7 @@ app_include_js = [
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
+page_js = {"organizational-chart" : "public/js/organizational_chart.js"}
 
 # include js in doctype views
 doctype_js = {"Employee" : "public/js/employee.js"}
