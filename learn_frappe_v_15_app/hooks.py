@@ -14,13 +14,17 @@ app_license = "mit"
 app_include_css = [
     "/assets/learn_frappe_v_15_app/css/theme.css",
     "/assets/learn_frappe_v_15_app/css/organization_chart.css",
+    "/assets/learn_frappe_v_15_app/css/menu.css",
     '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.min.css'
     ]
 app_include_js = [
     "/assets/learn_frappe_v_15_app/js/global.js",
     "/assets/learn_frappe_v_15_app/js/theme.js",
     '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.min.js',
-    '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.en.js'
+    '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.en.js',
+    "/assets/learn_frappe_v_15_app/js/layout_customization/workspace.js",
+    "/assets/learn_frappe_v_15_app/js/layout_customization/page.js",
+    "/assets/learn_frappe_v_15_app/js/layout_customization/router.js"
     ]
 
 # include js, css files in header of web template

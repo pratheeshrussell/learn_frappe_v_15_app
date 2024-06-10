@@ -1,0 +1,19 @@
+{
+ "content": null,
+ "creation": "2024-06-08 23:55:50.953845",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2024-06-09 00:05:52.047709",
+ "modified_by": "Administrator",
+ "module": "Learn Frappe App",
+ "name": "menu",
+ "owner": "Administrator",
+ "page_name": "menu",
+ "roles": [],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 0,
+ "title": "Menu"
+}

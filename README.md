@@ -44,3 +44,8 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 
 ### Injecting code in Page
 * check organizational_chart.js. It replaces the **hrms.HierarchyChart** with a custom class.      
+
+### Adding a menu page
+* Add a page using Frappe UI and save it to the app   
+* then make the changes as in **layout_cutomization** folder   
+* need to find an easier way if possible  
