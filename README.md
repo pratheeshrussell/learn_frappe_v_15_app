@@ -34,7 +34,10 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 * check switch_theme override + theme js  
 
 ### Custom Listview Action button
-*  check employee_list js
+*  check employee_list js - check the **button** function
+
+### Custom Listview Checkbox filter
+*  check employee_list js - check the **onload** function
 
 ### Customizing Time picker control
 * Frappe uses old version of [Air Datepicker](https://github.com/frappe/air-datepicker)   

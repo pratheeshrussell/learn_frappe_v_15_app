@@ -68,7 +68,30 @@ frappe.listview_settings["Employee"].button= {
     }
 };
 frappe.listview_settings["Employee"].onload = (listview)=> {
-    // frappe.msgprint("List load script injected");
+    // Adding a checkbox filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const jd_param = urlParams.get('date_of_joining');
+    const isEnabled = jd_param ? true : false;
+    let nameFilter = listview.page.page_actions.prepend(`
+            <input type="checkbox" id="jdfilter" ${isEnabled ? "checked" : ""} name="jdfilter" value="jd_filter">
+            &nbsp; Joining Date Filter
+            </input>`
+    );
+    nameFilter.change(function() {
+        const isChecked = arguments[0].target.checked;
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const jd_param = urlParams.get('date_of_joining');
+        if (isChecked) {
+                console.log('going to set the filter : ',isChecked)
+                urlParams.set('date_of_joining', '[">=","2024-06-09"]');
+            
+        } else {
+                urlParams.set('date_of_joining', '');
+        }
+        window.location.href = `/app/employee/view/list${urlParams.size >0 ? "?" : ""}${urlParams.toString()}`;
+    });
+
 }; 
 
 frappe.listview_settings["Employee"].refresh = (listview)=> {
