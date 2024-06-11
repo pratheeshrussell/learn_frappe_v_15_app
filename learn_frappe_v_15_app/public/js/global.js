@@ -3,7 +3,7 @@ console.log('injecting custom EmployeeImageView globally...')
 
 frappe.views.EmployeeimageView = class EmployeeImageView extends frappe.views.ImageView {
 	get view_name() {
-		return "Employee image";
+		return "Employee Image";
 	}
 	
 	setup_defaults() {
@@ -203,12 +203,122 @@ frappe.views.EmployeeimageView = class EmployeeImageView extends frappe.views.Im
 
 // An ugly workaround to modify image view just for a particular doctype
 // Save a backup of original view
-frappe.views.ImageViewOriginal= frappe.views.ImageView;
+// frappe.views.ImageViewOriginal= frappe.views.ImageView;
 
-frappe.views.ImageView= function getImgView(opts) {
-	if (opts.doctype === "Employee") {
-	  return (new frappe.views.EmployeeimageView(opts));
-	} else {
-	  return (new frappe.views.ImageViewOriginal(opts));
-	} 
+// frappe.views.ImageView= function getImgView(opts) {
+// 	if (opts.doctype === "Employee") {
+// 	  return (new frappe.views.EmployeeimageView(opts));
+// 	} else {
+// 	  return (new frappe.views.ImageViewOriginal(opts));
+// 	} 
+// }
+
+
+// Register as a new view
+frappe.views.view_modes.push('Employee Image');
+frappe.router.list_views.push('employeeimage');
+frappe.router.list_views_route['employeeimage']='Employeeimage';
+frappe.views.ListViewSelect = class CustomListViewSelect extends frappe.views.ListViewSelect {
+	constructor(opts) {
+		super(opts);
+	}
+	setup_views() {
+		const views = {
+			List: {
+				condition: true,
+				action: () => this.set_route("list"),
+			},
+			Report: {
+				condition: true,
+				action: () => this.set_route("report"),
+				current_view_handler: () => {
+					const reports = this.get_reports();
+					let default_action = {};
+					// Only add action if current route is not report builder
+					if (frappe.get_route().length > 3) {
+						default_action = {
+							label: __("Report Builder"),
+							action: () => this.set_route("report"),
+						};
+					}
+					this.setup_dropdown_in_sidebar("Report", reports, default_action);
+				},
+			},
+			Dashboard: {
+				condition: true,
+				action: () => this.set_route("dashboard"),
+			},
+			Calendar: {
+				condition: frappe.views.calendar[this.doctype],
+				action: () => this.set_route("calendar", "default"),
+				current_view_handler: () => {
+					this.get_calendars().then((calendars) => {
+						this.setup_dropdown_in_sidebar("Calendar", calendars);
+					});
+				},
+			},
+			Gantt: {
+				condition: frappe.views.calendar[this.doctype],
+				action: () => this.set_route("gantt"),
+			},
+			Inbox: {
+				condition: this.doctype === "Communication" && frappe.boot.email_accounts.length,
+				action: () => this.set_route("inbox"),
+				current_view_handler: () => {
+					const accounts = this.get_email_accounts();
+					let default_action;
+					if (has_common(frappe.user_roles, ["System Manager", "Administrator"])) {
+						default_action = {
+							label: __("New Email Account"),
+							action: () => frappe.new_doc("Email Account"),
+						};
+					}
+					this.setup_dropdown_in_sidebar("Inbox", accounts, default_action);
+				},
+			},
+			"Employee Image": {
+				condition: true,
+				action: () => this.set_route("employeeimage"),
+			},
+			Image: {
+				condition: this.list_view.meta.image_field,
+				action: () => this.set_route("image"),
+			},
+			Tree: {
+				condition:
+					frappe.treeview_settings[this.doctype] ||
+					frappe.get_meta(this.doctype).is_tree,
+				action: () => this.set_route("tree"),
+			},
+			Kanban: {
+				condition: this.doctype != "File",
+				action: () => this.setup_kanban_boards(),
+				current_view_handler: () => {
+					frappe.views.KanbanView.get_kanbans(this.doctype).then((kanbans) =>
+						this.setup_kanban_switcher(kanbans)
+					);
+				},
+			},
+			Map: {
+				condition:
+					this.list_view.settings.get_coords_method ||
+					(this.list_view.meta.fields.find((i) => i.fieldname === "latitude") &&
+						this.list_view.meta.fields.find((i) => i.fieldname === "longitude")) ||
+					this.list_view.meta.fields.find(
+						(i) => i.fieldname === "location" && i.fieldtype == "Geolocation"
+					),
+				action: () => this.set_route("map"),
+			},
+		};
+
+		frappe.views.view_modes.forEach((view) => {
+			if (this.current_view !== view && views[view].condition) {
+				this.add_view_to_menu(view, views[view].action);
+			}
+
+			if (this.current_view == view) {
+				views[view].current_view_handler && views[view].current_view_handler();
+			}
+		});
+	}
 }

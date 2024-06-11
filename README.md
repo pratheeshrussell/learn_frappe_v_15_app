@@ -28,7 +28,14 @@ NOTE that this leaves behind an entry in DB thats prevents it from being added a
 
 ## Experiments
 ### Custom imageview just for Employee doctype
-* check global js  
+* check global js  - The ugly workaround seems to work   
+
+### Creating a new view globally
+check global js
+* Add your view to frappe.views object  
+* add to frappe.views.view_modes  
+* extend and modify **setup_views** method in frappe.views.ListViewSelect   
+* finally add to frappe.views.view_modes and frappe.router.list_views_route  
 
 ### Custom Theme switcher
 * check switch_theme override + theme js  
