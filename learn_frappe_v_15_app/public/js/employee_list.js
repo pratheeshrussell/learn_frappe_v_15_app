@@ -5,7 +5,7 @@ console.log("employee list js injected..")
 // frappe.listview_settings["Employee"] = frappe.listview_settings["Employee"] || {};
 frappe.listview_settings["Employee"] = {
 	add_fields: ["status", "branch", "department", "designation", "image"],
-	filters: [["status", "=", "Active"]],
+	filters: [["status", "=", "Active"],],
     hide_name_column: true,
     hide_name_filter: true,
 	get_indicator: function (doc) {
@@ -67,6 +67,11 @@ frappe.listview_settings["Employee"].button= {
         });
     }
 };
+
+frappe.listview_settings["Employee"].filterSetting ={
+    show_all_data: false
+}
+
 frappe.listview_settings["Employee"].onload = (listview)=> {
     // Adding a checkbox filter
     const urlParams = new URLSearchParams(window.location.search);
@@ -77,19 +82,15 @@ frappe.listview_settings["Employee"].onload = (listview)=> {
             &nbsp; Joining Date Filter
             </input>`
     );
-    nameFilter.change(function() {
+    nameFilter.change(function(){
         const isChecked = arguments[0].target.checked;
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const jd_param = urlParams.get('date_of_joining');
-        if (isChecked) {
-                console.log('going to set the filter : ',isChecked)
-                urlParams.set('date_of_joining', '[">=","2024-06-09"]');
-            
-        } else {
-                urlParams.set('date_of_joining', '');
+        const filter = [];
+        if(isChecked){
+            filter.push(["Employee", "date_of_joining", ">=", "2024-06-09"]);
+            listview.filter_area.add(filter);
+        }else{
+            listview.filter_area.remove("date_of_joining");
         }
-        window.location.href = `/app/employee/view/list${urlParams.size >0 ? "?" : ""}${urlParams.toString()}`;
     });
 
 }; 
