@@ -24,7 +24,9 @@ app_include_js = [
     '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.en.js',
     "/assets/learn_frappe_v_15_app/js/layout_customization/workspace.js",
     "/assets/learn_frappe_v_15_app/js/layout_customization/page.js",
-    "/assets/learn_frappe_v_15_app/js/layout_customization/router.js"
+    "/assets/learn_frappe_v_15_app/js/layout_customization/router.js",
+    "/assets/learn_frappe_v_15_app/js/custom_form_class.js",
+    "/assets/learn_frappe_v_15_app/js/custom_footer.js"
     ]
 
 # include js, css files in header of web template
