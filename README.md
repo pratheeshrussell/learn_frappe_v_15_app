@@ -73,3 +73,8 @@ when you run ```bench build``` it will build the file
 
 #### Now extend and modify the class
 * check the custom_footer.js for implementation.
+
+### Workflow reject customization
+To ask for a reason if rejected   
+* check workflow_confirmation.js   
+* you need to add a new field(hidden field is fine) to save the reason  

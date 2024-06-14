@@ -46,7 +46,10 @@ page_js = {"organizational-chart" : [
     "public/js/org_chart/organizational_chart.js"]
     }
 # include js in doctype views
-doctype_js = {"Employee" : "public/js/employee.js"}
+doctype_js = {
+    "Employee" : "public/js/employee.js",
+    "custom doctype":"public/js/workflow_confirmation.js"
+    }
 doctype_list_js = {"Employee" : "public/js/employee_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
