@@ -24,7 +24,9 @@ app_include_js = [
     '/assets/learn_frappe_v_15_app/js/air-datepicker/datepicker.en.js',
     "/assets/learn_frappe_v_15_app/js/layout_customization/workspace.js",
     "/assets/learn_frappe_v_15_app/js/layout_customization/page.js",
-    "/assets/learn_frappe_v_15_app/js/layout_customization/router.js"
+    "/assets/learn_frappe_v_15_app/js/layout_customization/router.js",
+    "/assets/learn_frappe_v_15_app/js/custom_form_class.js",
+    "/assets/learn_frappe_v_15_app/js/custom_footer.js"
     ]
 
 # include js, css files in header of web template
@@ -44,7 +46,10 @@ page_js = {"organizational-chart" : [
     "public/js/org_chart/organizational_chart.js"]
     }
 # include js in doctype views
-doctype_js = {"Employee" : "public/js/employee.js"}
+doctype_js = {
+    "Employee" : "public/js/employee.js",
+    "custom doctype":"public/js/workflow_confirmation.js"
+    }
 doctype_list_js = {"Employee" : "public/js/employee_list.js"}
 doctype_tree_js = {"Employee" : "public/js/employee_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}

@@ -59,3 +59,22 @@ check global js
 * Add a page using Frappe UI and save it to the app   
 * then make the changes as in **layout_cutomization** folder   
 * need to find an easier way if possible  
+
+### Removing the readonly message from workflow
+* check **custom_form_class.js**
+
+### Customizing the footer timeline
+This is tricky since **FormTimeline** class is not set in the frappe object
+#### Get the FormTimeline class
+* in frappe_imports.bundle.js (the file name should be **[name].bundle.js**) add the import to the file(with the FormTimeline) class.   
+* Then set the object in the window object so we can reference later   
+* DONOT add this to hooks.py
+when you run ```bench build``` it will build the file
+
+#### Now extend and modify the class
+* check the custom_footer.js for implementation.
+
+### Workflow reject customization
+To ask for a reason if rejected   
+* check workflow_confirmation.js   
+* you need to add a new field(hidden field is fine) to save the reason  
