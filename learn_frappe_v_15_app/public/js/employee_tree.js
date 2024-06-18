@@ -27,15 +27,6 @@ frappe.treeview_settings["Employee"] = {
         frappe.set_route("Form", "Employee", node.data.value);
       },
     },
-    {
-      label: __("Rename"),
-      condition: function (node) {
-        return !node.is_root;
-      },
-      click: function (node) {
-        frappe.set_route("Form", "Employee", node.data.value);
-      },
-    },
   ],
   menu_items: [
     {
