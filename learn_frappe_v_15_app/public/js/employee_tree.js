@@ -39,9 +39,9 @@ frappe.treeview_settings["Employee"] = {
   ],
   onrender: function (node) {
     const {
-      data: { report_count },
+      data: { report_count, expandable },
     } = node;
-    if (report_count?.length > 0) {
+    if (expandable) {
       const reportCountElem = document.createElement("span");
       reportCountElem.textContent = "(" + report_count.length + " Reportees)";
       node.$tree_link[0].children[1].appendChild(reportCountElem);
