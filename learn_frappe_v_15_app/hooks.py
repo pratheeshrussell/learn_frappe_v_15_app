@@ -51,7 +51,7 @@ doctype_js = {
     "custom doctype":"public/js/workflow_confirmation.js"
     }
 doctype_list_js = {"Employee" : "public/js/employee_list.js"}
-# doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
+doctype_tree_js = {"Employee" : "public/js/employee_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
 # Svg Icons
@@ -181,7 +181,7 @@ doctype_list_js = {"Employee" : "public/js/employee_list.js"}
 # ------------------------------
 #
 override_whitelisted_methods = {
-    "frappe.core.doctype.user.user.switch_theme": "learn_frappe_v_15_app.overrides.switch_theme.switch_theme"
+    "frappe.core.doctype.user.user.switch_theme": "learn_frappe_v_15_app.overrides.switch_theme.switch_theme",
 }
 #
 # each overriding function accepts a `data` argument;
